@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customize Your Emojis</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/" class="navbar-brand">
+            <img src="/static/github-logo.png" alt="GitHub Logo" class="navbar-logo">
+            <span class="navbar-title">README Emoji Converter</span>
+        </a>
+        <div class="navbar-links">
+            <a href="/how-to-use" class="navbar-link">
+                <i>📖</i> How To Use
+            </a>
+            <a href="https://github.com/yourusername/readme-emoji-converter" target="_blank" class="navbar-link">
+                <i>📂</i> GitHub Repo
+            </a>
+        </div>
+    </nav>
+    <div class="container">
+        <h2>Customize Your README Emojis ✨</h2>
+        
+        <form action="/" method="post" class="emoji-options-form">
+            <div class="options-grid">
+                <div class="option-group">
+                    <h3>Header Level 1 (#)</h3>
+                    <div class="emoji-selector">
+                        {% for emoji in h1_options %}
+                        <label class="emoji-option">
+                            <input type="checkbox" name="h1_emoji" value="{{ emoji }}">
+                            <span class="emoji-display">{{ emoji }}</span>
+                        </label>
+                        {% endfor %}
+                    </div>
+                    <div class="custom-emoji-input">
+                        <input type="text" name="custom_h1_emoji" placeholder="Add custom emojis (e.g. 🚀,🌟,💫)">
+                    </div>
+                </div>
+                
+                <div class="option-group">
+                    <h3>Header Level 2 (##)</h3>
+                    <div class="emoji-selector">
+                        {% for emoji in h2_options %}
+                        <label class="emoji-option">
+                            <input type="checkbox" name="h2_emoji" value="{{ emoji }}">
+                            <span class="emoji-display">{{ emoji }}</span>
+                        </label>
+                        {% endfor %}
+                    </div>
+                    <div class="custom-emoji-input">
+                        <input type="text" name="custom_h2_emoji" placeholder="Add custom emojis (e.g. 🔹,✨,🌈)">
+                    </div>
+                </div>
+                
+                <div class="option-group">
+                    <h3>Header Level 3 (###)</h3>
+                    <div class="emoji-selector">
+                        {% for emoji in h3_options %}
+                        <label class="emoji-option">
+                            <input type="checkbox" name="h3_emoji" value="{{ emoji }}">
+                            <span class="emoji-display">{{ emoji }}</span>
+                        </label>
+                        {% endfor %}
+                    </div>
+                    <div class="custom-emoji-input">
+                        <input type="text" name="custom_h3_emoji" placeholder="Add custom emojis (e.g. ⚡,🔆,📎)">
+                    </div>
+                </div>
+                
+                <div class="option-group">
+                    <h3>List Items (-, +, *)</h3>
+                    <div class="emoji-selector">
+                        {% for emoji in list_options %}
+                        <label class="emoji-option">
+                            <input type="checkbox" name="list_emoji" value="{{ emoji }}">
+                            <span class="emoji-display">{{ emoji }}</span>
+                        </label>
+                        {% endfor %}
+                    </div>
+                    <div class="custom-emoji-input">
+                        <input type="text" name="custom_list_emoji" placeholder="Add custom emojis (e.g. ✅,🔸,🔹)">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="info-box">
+                <p>We'll automatically randomize from your selected emojis for each header and list item.</p>
+                <p>Choose at least one emoji for each category, or we'll use our defaults.</p>
+            </div>
+            
+            <button type="submit" name="apply_emojis" value="1" class="submit-button">Apply Emojis</button>
+        </form>
+    </div>
+    <footer>
+        README Emoji Converter | Make your documentation more expressive
+    </footer>
+
+    <script>
+        // Make sure at least one emoji is selected for each category
+        document.querySelector('form').addEventListener('submit', function(e) {
+            const categories = ['h1_emoji', 'h2_emoji', 'h3_emoji', 'list_emoji'];
+            
+            categories.forEach(category => {
+                const checkboxes = document.querySelectorAll(`input[name="${category}"]`);
+                const customField = document.querySelector(`input[name="custom_${category}"]`);
+                
+                // Count selected checkboxes
+                let selected = Array.from(checkboxes).filter(cb => cb.checked).length;
+                
+                // Check if custom field has content
+                if (customField.value.trim()) selected++;
+                
+                // If nothing selected, select the first checkbox
+                if (selected === 0) {
+                    checkboxes[0].checked = true;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

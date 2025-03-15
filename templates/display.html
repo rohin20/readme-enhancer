@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Updated README</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/styles.css">
+    <!-- Add marked.js for Markdown rendering -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/" class="navbar-brand">
+            <img src="/static/github-logo.png" alt="GitHub Logo" class="navbar-logo">
+            <span class="navbar-title">README Emoji Converter</span>
+        </a>
+        <div class="navbar-links">
+            <a href="/how-to-use" class="navbar-link">
+                <i>📖</i> How To Use
+            </a>
+            <a href="https://github.com/yourusername/readme-emoji-converter" target="_blank" class="navbar-link">
+                <i>📂</i> GitHub Repo
+            </a>
+        </div>
+    </nav>
+    <div class="container">
+        <h2>README Emoji Converter ✨</h2>
+        
+        <div class="comparison-container">
+            <div class="comparison-column">
+                <h3>Original README</h3>
+                <div class="content-container">
+                    <div id="original-content" class="markdown-content"></div>
+                </div>
+            </div>
+            <div class="comparison-column">
+                <h3>Emoji-Enhanced README</h3>
+                <div class="content-container">
+                    <div id="updated-content" class="markdown-content"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="button-container">
+            <a href="/" class="button primary-button">Upload Another File</a>
+            <a href="/download" class="button secondary-button">Download Updated README</a>
+        </div>
+    </div>
+    <footer>
+        README Emoji Converter | Make your documentation more expressive
+    </footer>
+
+    <script>
+        // Store the raw Markdown content
+        const originalContent = `{{ original_content|safe }}`;
+        const updatedContent = `{{ updated_content|safe }}`;
+        
+        // Convert Markdown to HTML using marked.js
+        document.getElementById('original-content').innerHTML = marked.parse(originalContent);
+        document.getElementById('updated-content').innerHTML = marked.parse(updatedContent);
+    </script>
+</body>
+</html>

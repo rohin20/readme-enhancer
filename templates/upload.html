@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload README</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/" class="navbar-brand">
+            <img src="/static/github-logo.png" alt="GitHub Logo" class="navbar-logo">
+            <span class="navbar-title">README Emoji Converter</span>
+        </a>
+        <div class="navbar-links">
+            <a href="/how-to-use" class="navbar-link">
+                <i>📖</i> How To Use
+            </a>
+            <a href="https://github.com/yourusername/readme-emoji-converter" target="_blank" class="navbar-link">
+                <i>📂</i> GitHub Repo
+            </a>
+        </div>
+    </nav>
+    <div class="container">
+        <h2>Upload Your README.md</h2>
+        
+        {% if error %}
+        <div class="error-message">{{ error }}</div>
+        {% endif %}
+        
+        <form action="/" method="post" enctype="multipart/form-data" class="upload-form">
+            <div class="file-input-container">
+                <div class="file-input">
+                    <div class="file-input-icon">📄</div>
+                    <div class="file-input-label">choose your readme file or drag it here</div>
+                    <input type="file" name="file" accept=".md">
+                </div>
+            </div>
+            <button type="submit" class="submit-button">enhance</button>
+        </form>
+    </div>
+    <footer>
+        README Emoji Converter | Make your documentation more expressive
+    </footer>
+
+    <script>
+        const fileInput = document.querySelector('input[type="file"]');
+        const fileLabel = document.querySelector('.file-input-label');
+        
+        fileInput.addEventListener('change', function() {
+            if (this.files && this.files[0]) {
+                fileLabel.textContent = this.files[0].name;
+            } else {
+                fileLabel.textContent = 'Choose your README.md file or drag it here';
+            }
+        });
+    </script>
+</body>
+</html>
